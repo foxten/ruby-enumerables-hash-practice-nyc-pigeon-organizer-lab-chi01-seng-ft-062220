@@ -1,13 +1,18 @@
 def nyc_pigeon_organizer(data)
   # write your code here!
   result = {}
-  flat = []
-    data.each_key do |key|
-      flat << data[key].values
-    end
-    names = flat.flatten.uniq
-      names.each do |element|
-        result[element] = {}
+  data.each do |top_key, second_key|
+   second_key.each do |characteristics, names|
+    names.each do |pigeon|
+      if result[pigeon] == nil
+      result[pigeon] = {}
       end
+      if result[pigeon][top_key] == nil
+        result[pigeon][top_key] = []
+      end
+      result[pigeon][top_key] << characteristics.to_s
+    end
+  end
+end
 result
 end
